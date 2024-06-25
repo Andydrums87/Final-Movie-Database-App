@@ -11,7 +11,8 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-   <% if (data.Response == "False") { %>
+<% data %>
+   <% if (data.Response == "False" || 'not found) { %>
     <div class="error__container">
  <h1 class="error__message">
       Movie Not Found
