@@ -10,11 +10,12 @@
     <title>Movie Search App</title>
 </head>
 <body>
-<%= locals.data %>
-    <%- include("partials/header.ejs") %>
-<div class="info">
+     <%- include("partials/header.ejs") %>
+<% if (locals.data) { %>
+  <div class="info">
     <div class="movie__poster">
-       <img src=" <%= data.Poster %> " alt="poster image"> 
+      <% let poster = data.Poster || 'not found' %>
+       <img src=" <%= poster %> " alt="poster image"> 
     </div>
   <div class="movie__data">
     <h3 class="movie__title">
@@ -23,7 +24,7 @@
     <ul class="genre__list">
         <% let text = data.Genre || 'not found' %>
         <% textNoCommas = text.replace(/,/g, "") %>
-        <% const genres = textNoCommas.split(" "); %>
+        <% const genres = textNoCommas.split(" ") %>
        
         <% genres.forEach(genre=> { %>
             <li>
@@ -51,12 +52,17 @@
     <h4>Stars: 
         <% allStars.forEach(star => { %>
         <span> <%= star %></span>
-     <%   }); %>
+     <%   }) %>
     </h4>
     <h4>iMDB Rating: <span><%= data.imdbRating %> <span class="little__span">(<%= data.imdbVotes %>votes)</span> </span> </h4>
  </div>
 </div>
+<% } if(locals.data === "False") { %>
+ 
+ <div class="error__container"> <h1>Hello</h1></div>
 
- <script src="app.js"></script>
+
+
+<% } %>
 </body>
 </html>
