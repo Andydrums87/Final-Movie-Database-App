@@ -11,7 +11,6 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
-<% if(locals.data) { %>
 <div class="info">
     <div class="movie__poster">
        <img src=" <%= data.Poster %> " alt="poster image"> 
@@ -56,13 +55,7 @@
     <h4>iMDB Rating: <span><%= data.imdbRating %> <span class="little__span">(<%= data.imdbVotes %>votes)</span> </span> </h4>
  </div>
 </div>
-<% } else { %>
-<div class="error__container">
-<h1 class="error__message">
-Movie Not Found
-</h1>
-</div>
-<% } %>
+
  <script src="app.js"></script>
 </body>
 </html>
