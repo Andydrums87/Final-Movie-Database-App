@@ -1,4 +1,3 @@
-require("dotenv").config()
 
 const express = require('express');
 const axios = require('axios');
@@ -6,9 +5,9 @@ const bodyParser = require('body-parser');
 
 
 
+
 const app = express();
-const key = process.env.MOVIE_API_KEY;
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 
 app.set('view engine', 'ejs');
@@ -24,13 +23,12 @@ app.get("/", (req, res) => {
 app.post("/", async (req, res) => {
  try {
     const movieTitle = req.body.search
-    const response = await axios.get(`http://www.omdbapi.com/?t=${movieTitle}&apikey=${key}`);
+    const response = await axios.get(`https://www.omdbapi.com/?t=${movieTitle}&apikey=5a86865a`);
     const result = response.data
+    res.render("index.ejs", {data: result});
     console.log(result)
-    res.render("index.ejs", {data: result})
-
 } catch (error) {
-    res.status(404);
+    
     console.log(error)
  }    
   });
